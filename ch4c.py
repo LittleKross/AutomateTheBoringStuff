@@ -10,14 +10,21 @@ def importData(fileName):
     uprightData = []
     i = 0
     fileData = open("./"+fileName)
-    
+    maxWidth = 0
+    maxHeight = 0
     for line in fileData:
-        for j in range(len(line)-1):
+        if len(line) > maxWidth:
+            maxWidth = len(line)
+    fileData.seek(0)
+    for line in fileData:
+        for j in range(maxWidth):
             if i == 0:
                 uprightData.append([])
-            uprightData[j].append(line[j])
+            try:
+                uprightData[j].append(line[:-1][j])
+            except IndexError:
+                uprightData[j].append(' ')
         i += 1
-    
     return uprightData
 
 def printUpright(pixelGrid):
@@ -37,7 +44,7 @@ grid = [['.', '.', '.', '.', '.', '.'],
         ['.', '.', '.', '.', '.', '.']]
 
 data = importData("skull.txt")
-printUpright(data)
-printUpright(grid)
+printGrid(data)
+printGrid(grid)
 
 # add a gui type printout
