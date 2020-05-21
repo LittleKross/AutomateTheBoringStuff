@@ -1,12 +1,13 @@
 import random
 numberOfStreaks = 0
-for experimentNumber in range(1):
+for experimentNumber in range(10000):
     data = []
     currentStreak = True
     currentStreakLength = 0
     numberOfStreaksThisTime = 0
     for i in range(100):
         data.append(random.randint(0,1))
+        #print(currentStreak,currentStreakLength)
         if currentStreak != data[i]:
             currentStreak = not currentStreak
             currentStreakLength = 0
@@ -16,7 +17,7 @@ for experimentNumber in range(1):
             numberOfStreaks += 1
             numberOfStreaksThisTime += 1
         elif currentStreakLength > 6:
-            currentStreakLength += 1
+            pass
     print(data)
     print(numberOfStreaksThisTime)
-    print('Chance of streak: %s%%' % (numberOfStreaks / 100))
+print('Chance of streak: %s%%' % (numberOfStreaks / 1000000))
